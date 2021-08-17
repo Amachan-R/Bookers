@@ -21,9 +21,9 @@
             <tr>
               <td><span><%= book.title %></span></td>
               <td><span><%= book.body %></span></td>
-              <td><a></a></td>
-              <td><a></a></td>
-              <td><a></a></td>
+              <td><a><%= link_to "Show", "/books/#{book.id}" %></a></td>
+              <td><a><%= link_to "Edit", "/books/#{book.id}/edit" %></a></td>
+              <td><a><%= link_to "Destroy", "/books/#{book.id}", method: :delete %></a></td>
             </tr>
           <% end %>
       </tbody>
