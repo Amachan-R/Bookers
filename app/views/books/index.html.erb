@@ -5,6 +5,10 @@
     <meta charset="UTF-8" />
   </head>
   <body>
+    <% if flash[:notice] %>
+      <p><%= flash[:notice] %></p>
+    <% end %>
+
     <p id="notice"></p>
     <h1>Books</h1>
     <table>
@@ -17,19 +21,26 @@
       </thead>
 
       <tbody>
-          <% @books.each do |book| %>
-            <tr>
-              <td><span><%= book.title %></span></td>
-              <td><span><%= book.body %></span></td>
-              <td><a><%= link_to "Show", "/books/#{book.id}" %></a></td>
-              <td><a><%= link_to "Edit", "/books/#{book.id}/edit" %></a></td>
-              <td><a><%= link_to "Destroy", "/books/#{book.id}", method: :delete %></a></td>
-            </tr>
-          <% end %>
+        <% @books.each do |book| %>
+          <tr>
+            <td><span><%= book.title %></span></td>
+            <td><span><%= book.body %></span></td>
+            <td width="60"><a><%= link_to "Show", "/books/#{book.id}" %></a></td>
+            <td width="60"><a><%= link_to "Edit", "/books/#{book.id}/edit" %></a></td>
+            <td width="60"><a><%= link_to "Destroy", "/books/#{book.id}", method: :delete %></a></td>
+          </tr>
+        <% end %>
       </tbody>
     </table>
 
     <h2>New book</h2>
+    <% if @book.errors.any? %>
+      <%= @book.errors.count %>"errors prohibited this book from being saved:"
+      <% @book.errors.full_messages.each do |message| %>
+        <%= message %>
+      <% end %>
+    <% end %>
+
     <%= form_with model:@book, local:true do |f| %>
 
       <h4>Title</h4>

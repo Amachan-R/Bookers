@@ -5,8 +5,11 @@
     <title>Bookers</title>
   </head>
   <body>
-    <p>
-      <strong>Title:</strong>
+    <% if flash[:notice] %>
+      <p><%= flash[:notice] %></p>
+    <% end %>
+
+    <p><strong>Title:</strong>
       <%= @book.title %>
     </p>
 
